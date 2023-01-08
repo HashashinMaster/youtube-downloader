@@ -1,0 +1,27 @@
+{
+  "name": "youtube_downloader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server",
+    "tailwind:build": "postcss public/styles/tailwind.css -o public/styles/style.css",
+    "tailwind:watch": "postcss public/styles/tailwind.css -w -o public/styles/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.13",
+    "express": "^4.18.2",
+    "postcss": "^8.4.21",
+    "postcss-cli": "^10.1.0",
+    "pug": "^3.0.2",
+    "youtube-dl-exec": "^2.1.11",
+    "youtube-dl-progress": "^1.13.3"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
+  }
+}
