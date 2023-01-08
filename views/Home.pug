@@ -1,10 +1,20 @@
 doctype html
 html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Weedy 
-        link(rel="stylesheet", href="styles/style.css")
-    body 
-        h1 Pug is Looking more Fun
+    include Header.pug
+    body(class="bg-fMain w-screen h-screen")
+        div(class="w-full flex items-center h-3/5 justify-center flex-col gap-4 ")
+            h1(class="text-sMain text-6xl font-rubikVinyl") Weedy
+            p.text-white a safe and easy youtube downloader with different formats
+            form(action="download", method="post" class="w-full flex gap-2 justify-center") 
+                input(
+                    type="text", 
+                    placeholder="add youtube URL...",
+                    class="bg-tMain text-white w-4/5 h-16 outline-none px-4 rounded-full"
+                    name="url"
+                    )
+                input( 
+                    type="submit", 
+                    value="Search",
+                    class="text-foMain bg-sMain cursor-pointer px-7 rounded-full "  
+                    )
+            

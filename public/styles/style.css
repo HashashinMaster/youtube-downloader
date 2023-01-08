@@ -468,11 +468,93 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
-.bg-black {
+.flex {
+  display: flex;
+}
+.h-screen {
+  height: 100vh;
+}
+.h-3\/5 {
+  height: 60%;
+}
+.h-16 {
+  height: 4rem;
+}
+.w-screen {
+  width: 100vw;
+}
+.w-full {
+  width: 100%;
+}
+.w-4\/5 {
+  width: 80%;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.bg-fMain {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+  background-color: rgb(19 18 25 / var(--tw-bg-opacity));
 }
-.text-yellow-300 {
+.bg-tMain {
+  --tw-bg-opacity: 1;
+  background-color: rgb(25 27 31 / var(--tw-bg-opacity));
+}
+.bg-sMain {
+  --tw-bg-opacity: 1;
+  background-color: rgb(134 194 136 / var(--tw-bg-opacity));
+}
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.px-7 {
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+}
+.font-rubikVinyl {
+  font-family: RubikVinyl;
+}
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+.text-sMain {
   --tw-text-opacity: 1;
-  color: rgb(253 224 71 / var(--tw-text-opacity));
+  color: rgb(134 194 136 / var(--tw-text-opacity));
 }
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-foMain {
+  --tw-text-opacity: 1;
+  color: rgb(43 78 52 / var(--tw-text-opacity));
+}
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+@font-face {
+    font-family: "RubikVinyl";
+    src: url('../fonts/RubikVinyl-Regular.ttf');
+  }
