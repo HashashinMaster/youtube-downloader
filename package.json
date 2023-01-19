@@ -18,17 +18,21 @@
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^10.4.13",
+    "axios": "^1.2.2",
+    "cheerio": "^1.0.0-rc.12",
     "electron-squirrel-startup": "^1.0.0",
     "express": "^4.18.2",
     "jquery": "^3.6.3",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
     "pug": "^3.0.2",
+    "puppeteer": "^19.5.2",
     "toastr": "^2.1.4",
     "vanilla-toast": "^0.5.0",
     "youtube-dl-exec": "^2.1.11",
     "youtube-dl-progress": "^1.13.3",
-    "ytdl-core": "^4.11.2"
+    "ytdl-core": "^4.11.2",
+    "ytpl": "^2.3.0"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.4",

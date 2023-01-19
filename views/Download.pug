@@ -1,8 +1,39 @@
 doctype html
 html(lang="en")
     include Header.pug
-    body 
-        h1 url is #{url}
-    script(src="dist/download.bundle.js") 
+    link(rel="stylesheet", href="icons/css/all.min.css ")
+    body.bg-fMain 
+        include MovieCard.pug
+        div(class="flex gap-4")
+        if data._type == "video"
+            +MovieCard(
+                data.duration,
+                data.bestThumbnail,
+                data.author.name,
+                data.title,
+                data.url,
+                ['mp4'],
+                234324,
+                'video'
+                )
+        else 
+            div(class="flex w-screen gap-4 flex-wrap mx-auto")
+                each video in data.items
+                    +MovieCard(
+                    video.duration,
+                    video.bestThumbnail.url,
+                    video.author.name,
+                    video.title,
+                    video.url,
+                    ['mp4'],
+                    234324,
+                    'playlist'
+                    )
+
+
+
+
+
     script. 
-        const videoInfo = !{videoInfo};
+        const data=!{JSON.stringify(data)};
+    script(src="dist/download.bundle.js") 

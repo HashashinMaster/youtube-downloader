@@ -1,2 +1,7 @@
 /node_modules
-out/
+/out
+/FB.json
+/FB.html
+/firstYscrap.json
+/firstYtScrap.json
+/scripts/scrap.json

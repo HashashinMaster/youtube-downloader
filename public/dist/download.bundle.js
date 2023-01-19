@@ -16,7 +16,7 @@
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\r\njquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(() => {\r\n    const formats = videoInfo.formats\r\n    .map( e => e.mimeType.slice(0,e.mimeType.indexOf(';')))\r\n    .filter((e, i, a) => a.indexOf(e) === i)\r\n\r\n    console.log(formats)\r\n} )\n\n//# sourceURL=webpack://youtube_downloader/./src/download.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\r\njquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(() => {\r\n    // const formats = videoInfo.formats\r\n    // .map( e => e.mimeType.slice(0,e.mimeType.indexOf(';')))\r\n    // .filter((e, i, a) => a.indexOf(e) === i)\r\n    console.log(data)\r\n    // console.log(typeof videoInfo)\r\n    // new Intl.NumberFormat('de-DE', { style: 'unit', unit: '',unitDisplay: 'short',minimumFractionDigits: 2,maximumFractionDigits: 2, }).format(views)\r\n\r\n} )\n\n//# sourceURL=webpack://youtube_downloader/./src/download.js?");
 
 /***/ })
 
