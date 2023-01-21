@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [ './views/*.{pug, html}'],
+  content: [ 
+    './views/*.{pug, html}',
+    './src/*.js'
+
+],
   theme: {
     extend: {
       backgroundColor: {
@@ -20,6 +24,9 @@ module.exports = {
       },
       fontFamily:{
         rubikVinyl : ['RubikVinyl']
+      },
+      width: {
+        cardRow: 'calc(calc(16rem * 4) + 3rem)'
       }
     },
   },

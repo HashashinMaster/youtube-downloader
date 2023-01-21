@@ -468,6 +468,9 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+.pointer-events-none {
+  pointer-events: none;
+}
 .absolute {
   position: absolute;
 }
@@ -489,13 +492,16 @@ video {
 .bottom-0 {
   bottom: 0px;
 }
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
+.z-10 {
+  z-index: 10;
 }
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .mt-2 {
   margin-top: 0.5rem;
@@ -518,26 +524,17 @@ video {
 .h-16 {
   height: 4rem;
 }
-.h-80 {
-  height: 20rem;
+.h-\[300px\] {
+  height: 300px;
 }
 .h-14 {
   height: 3.5rem;
 }
-.h-7 {
-  height: 1.75rem;
+.h-1 {
+  height: 0.25rem;
 }
-.h-20 {
-  height: 5rem;
-}
-.h-96 {
-  height: 24rem;
-}
-.h-\[36\] {
-  height: 36;
-}
-.h-\[360px\] {
-  height: 360px;
+.w-cardRow {
+  width: calc(calc(16rem * 4) + 3rem);
 }
 .w-screen {
   width: 100vw;
@@ -554,11 +551,14 @@ video {
 .w-14 {
   width: 3.5rem;
 }
+.w-0 {
+  width: 0px;
+}
+.w-\[0\%\] {
+  width: 0%;
+}
 .cursor-pointer {
   cursor: pointer;
-}
-.flex-row {
-  flex-direction: row;
 }
 .flex-col {
   flex-direction: column;
@@ -580,14 +580,6 @@ video {
 }
 .overflow-hidden {
   overflow: hidden;
-}
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.whitespace-nowrap {
-  white-space: nowrap;
 }
 .rounded-full {
   border-radius: 9999px;
@@ -623,6 +615,10 @@ video {
 .bg-grayInfo {
   --tw-bg-opacity: 1;
   background-color: rgb(92 94 109 / var(--tw-bg-opacity));
+}
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 .p-1 {
   padding: 0.25rem;
@@ -683,9 +679,6 @@ video {
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-.filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;

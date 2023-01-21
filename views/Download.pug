@@ -3,32 +3,36 @@ html(lang="en")
     include Header.pug
     link(rel="stylesheet", href="icons/css/all.min.css ")
     body.bg-fMain 
+        include Navigate.pug 
         include MovieCard.pug
         div(class="flex gap-4")
-        if data._type == "video"
+        if type == "video"
             +MovieCard(
                 data.duration,
-                data.bestThumbnail,
-                data.author.name,
+                data.time_uploaded,
+                data.thumbnail,
+                data.author,
                 data.title,
                 data.url,
                 ['mp4'],
-                234324,
-                'video'
+                data.views,
+                type
                 )
         else 
-            div(class="flex w-screen gap-4 flex-wrap mx-auto")
-                each video in data.items
-                    +MovieCard(
-                    video.duration,
-                    video.bestThumbnail.url,
-                    video.author.name,
-                    video.title,
-                    video.url,
-                    ['mp4'],
-                    234324,
-                    'playlist'
-                    )
+            div(class="flex w-cardRow  gap-4 flex-wrap mx-auto")
+                -for (let i = 0; i< 16; i++)
+                    if data[i] !== undefined
+                        +MovieCard(
+                        data[i].duration,
+                        data[i].time_uploaded,
+                        data[i].thumbnail,
+                        data[i].author,
+                        data[i].title,
+                        data[i].url,
+                        ['mp4'],
+                        data[i].views,
+                        type
+                        )
 
 
 

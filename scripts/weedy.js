@@ -2,11 +2,12 @@ const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
 const path = require('path');
 
-
+let browser;
+( async () => {
+    browser = await puppeteer.launch({timeout:0});
+})()
 
 const getPlaylistInfo =  async (url) => {
-    
-    const browser = await puppeteer.launch({timeout:0});
     const page = await browser.newPage();
     page.setDefaultNavigationTimeout(0);
     page.setDefaultTimeout(0);
@@ -39,51 +40,54 @@ const getPlaylistInfo =  async (url) => {
         const views = getData('yt-formatted-string#video-info span:nth-child(1)','textContent' );
         const durations = getData('ytd-thumbnail-overlay-time-status-renderer span#text','textContent');
         const time_uploads = getData('yt-formatted-string#video-info span:nth-child(3)','textContent' );
+        const urls = getData('a#video-title','href')
         const links = document.querySelectorAll('a#video-title');
         let data = [];
         for( let i = 0; i < titles.length; i++){
             data.push(
                 {
                     title: titles[i],
-                    thumbnail: `https://i.ytimg.com/vi/${links[i].data.watchEndpoint.videoId}/hqdefault.jpg`,
+                    thumbnail: `https://i.ytimg.com/vi/${links[i].data.watchEndpoint.videoId}/mqdefault.jpg`,
                     author: authors[i],
                     views: views[i],
                     duration: durations[i],
                     time_uploaded: time_uploads[i],
+                    url: urls[i]
                 }
             )
         }
         return data
     })
     await fs.writeFile(path.join(__dirname,'scrap.json'),JSON.stringify(data,null,2));
-    browser.close()
+     page.close();
     return data;
     
 };
 
 const getVideoInfo =  async (url) => {
-    const browser = await puppeteer.launch({timeout:0});
     const page = await browser.newPage();
     page.setDefaultNavigationTimeout(0);
     page.setDefaultTimeout(0);
     await page.goto(url);
-    await page.waitForSelector('#title > h1 > yt-formatted-string')
-    await page.waitForSelector('#text > a')
-    await page.waitForSelector('#info > span:nth-child(1)')
+    await page.waitForSelector('#title > h1 > yt-formatted-string');
+    await page.waitForSelector('#text > a');
+    await page.waitForSelector('#info > span:nth-child(1)');
+    await page.waitForSelector('.ytp-time-duration');
     const title = await getContent('#title > h1 > yt-formatted-string');
-    const thumbnail = `https://i.ytimg.com/vi/${new URL(url).searchParams.get('v')}/hqdefault.jpg`;
+    const thumbnail = `https://i.ytimg.com/vi/${new URL(url).searchParams.get('v')}/mqdefault.jpg`;
     const author = await getContent('#text > a');
     const views = await getContent("#info > span:nth-child(1)");
     const time_uploaded = await getContent("#info > span:nth-child(3)");
-    const duration = await getContent("#movie_player > div.ytp-chrome-bottom > div.ytp-chrome-controls > div.ytp-left-controls > div.ytp-time-display.notranslate > span:nth-child(2) > span.ytp-time-duration");
-    browser.close()
+    const duration = await getContent(".ytp-time-duration");
+    page.close()
     return {
         title,
         thumbnail,
         author,
         views,
         time_uploaded,
-        duration
+        duration,
+        url
     }
     function getContent (selector) {
         return page.$eval(selector, (el) => el.textContent);

@@ -1,5 +1,6 @@
 const ytdl = require('ytdl-core')
 const ytpl = require('ytpl');
+const dd = require('../scripts/scrap.json')
 const { getVideoInfo, getPlaylistInfo } = require('../scripts/weedy');
 const showDownloadPage = async ( req, res ) => {
     
@@ -7,15 +8,14 @@ const showDownloadPage = async ( req, res ) => {
         return res.render('Error', {code:404, message: "oops something is wrong! get back the main page and try again."})
     
     try {
-        let data
+        let data;
         if(req.body.type ==='video'){
             data = await getVideoInfo(req.body.url);
-            return res.render('Download', data)
+            return res.render('Download', { data, type: req.body.type })
         }
         else if(req.body.type ==='playlist'){
-            data = await getPlaylistInfo(req.body.url);
-            console.log(data)
-            return res.render('Download', data)
+            // data = await getPlaylistInfo(req.body.url);
+            return res.render('Download', { data: dd, type: req.body.type })
 
         }
     

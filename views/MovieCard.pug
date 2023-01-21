@@ -1,19 +1,17 @@
-mixin MovieCard(duration,thumbnail,uploaderName,title,videoUrl,formats,views,type)
-    div(class="w-64 h-[360px] text-white bg-MovieCard rounded-3xl flex flex-col items-center gap-2 overflow-hidden relative")
+mixin MovieCard(duration,time_uploaded,thumbnail,uploaderName,title,videoUrl,formats,views,type)
+    div( class="w-64 h-[300px] text-white bg-MovieCard rounded-3xl flex flex-col items-center gap-2 overflow-hidden relative")
         span(class="absolute top-4 right-4 rounded-md p-1 bg-time text-sm")= duration
         select(class="absolute top-4 left-4 rounded-md p-1 bg-time text-sm")
             each format in formats
                 option(value=fromat)=format
                      
-        div(class="rounded-full shadow-lg bg-grayInfo transition duration-150 hover:bg-sMain w-14 h-14 absolute my-auto top-0 bottom-0 cursor-pointer right-4 flex items-center justify-center")
-            a(href=videoUrl, target="_blank", rel="noopener noreferrer") 
-                i(class="fa-solid fa-play text-white")
-        img(src=thumbnail, alt="couldn't load the image" )
+        div( data-id= new URL(videoUrl).searchParams.get('v') class="rounded-full shadow-lg bg-grayInfo transition duration-150 hover:bg-sMain w-14 h-14 absolute my-auto top-0 bottom-0 cursor-pointer right-4 flex items-center justify-center z-10")
+                i(class="fa-solid fa-play text-white" )
+        img(src=thumbnail, alt="couldn't load the image" id= new URL(videoUrl).searchParams.get('v') )
         div(class="w-full p-4")
             -let extraClass = type == "video"? "": 'flex flex-col justify-center'
             div(class="w-full") 
                 span(class="text-grayCustom text-sm")=uploaderName
                 p(class="font-bold w-full" style="overflow: hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;")=title
-                span(class="text-grayInfo text-sm") !{new Intl.NumberFormat('de-DE', { style: "decimal" }).format(views) + " views"} 
-            if type == 'video'  
-                button(class="p-2 shadow-lg mt-2 bg-grayInfo transition duration-150 hover:bg-sMain mx-auto block rounded-lg") download
+                span(class="text-grayInfo text-sm")= views + " | " + time_uploaded 
+            
