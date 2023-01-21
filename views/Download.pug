@@ -19,7 +19,7 @@ html(lang="en")
                 type
                 )
         else 
-            div(class="flex w-cardRow  gap-4 flex-wrap mx-auto")
+            div(class="flex w-cardRow  gap-4 flex-wrap mx-auto" id="cardsContainer")
                 -for (let i = 0; i< 16; i++)
                     if data[i] !== undefined
                         +MovieCard(
@@ -29,7 +29,7 @@ html(lang="en")
                         data[i].author,
                         data[i].title,
                         data[i].url,
-                        ['mp4'],
+                        ['mp4','mp3'],
                         data[i].views,
                         type
                         )
@@ -39,5 +39,5 @@ html(lang="en")
 
 
     script. 
-        const data=!{JSON.stringify(data)};
+        const movieJson=!{JSON.stringify(data)};
     script(src="dist/download.bundle.js") 

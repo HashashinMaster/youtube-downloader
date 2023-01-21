@@ -1,0 +1,54 @@
+<div class="w-64 h-[300px] text-white bg-MovieCard rounded-3xl flex flex-col items-center gap-2 overflow-hidden relative">
+    <span class="absolute top-4 right-4 rounded-md p-1 bg-time text-sm">
+        {{duration}}
+    </span>
+    <i 
+    class="fa-solid  fa-circle-check absolute bottom-4 right-4 text-lg cursor-pointer "
+    title="if the checkbox is checked the video is going to download after!"
+    data-videoId = "{{videoId}}"
+    >
+    </i>
+    <select
+    class="absolute top-4 left-4 rounded-md p-1 bg-time text-sm"
+    >
+        {{#each formats}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+    <div
+    data-id = "{{videoId}}"
+    class="rounded-full shadow-lg bg-grayInfo transition duration-150 hover:bg-sMain w-14 h-14 absolute my-auto top-0 bottom-0 cursor-pointer right-4 flex items-center justify-center z-10"
+    >
+        <i class="fa-solid fa-play text-white"></i>
+    </div>
+    <img
+    src="{{thumbnail}}"
+    alt="couldn't load the image" '
+    id="{{videoId}}"
+    />
+    <div
+    class="w-full p-4"
+    >
+        <div
+        class="w-full"
+        >
+            <span
+            class="text-grayCustom text-sm"
+            >
+                {{uploaderName}}
+            </span>
+            <p
+            class="font-bold w-full" 
+            style="overflow: hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;"
+            >
+                {{title}}
+            </p>
+            <span
+            class="text-grayInfo text-sm"
+            >
+            {{views}} | {{time_uploaded}} 
+            </span>
+        </div>
+
+    </div>
+</div>

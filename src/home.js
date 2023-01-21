@@ -1,5 +1,5 @@
 import $ from "jquery";
-import toastr, { options } from 'toastr';
+import toastr from 'toastr';
 $(document).ready(fnReady)
 const toastOptions = {
     closeButton: true,

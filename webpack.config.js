@@ -1,5 +1,13 @@
 const path = require('path');
 module.exports = {
+  externals: ['fs'],
+  module: {
+    rules: [
+    {
+      test: /\.html$/,
+      use: ['raw-loader']
+    }
+  ]},
     entry: {
         home : {
           import: './src/home.js',

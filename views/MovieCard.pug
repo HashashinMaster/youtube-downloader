@@ -1,6 +1,11 @@
 mixin MovieCard(duration,time_uploaded,thumbnail,uploaderName,title,videoUrl,formats,views,type)
     div( class="w-64 h-[300px] text-white bg-MovieCard rounded-3xl flex flex-col items-center gap-2 overflow-hidden relative")
         span(class="absolute top-4 right-4 rounded-md p-1 bg-time text-sm")= duration
+        i(class="fa-solid  fa-circle-check absolute bottom-4 right-4 text-lg cursor-pointer ", 
+        title="if the checkbox is checked the video is going to download after!",
+        data-videoId= new URL(videoUrl).searchParams.get('v')
+        
+        )
         select(class="absolute top-4 left-4 rounded-md p-1 bg-time text-sm")
             each format in formats
                 option(value=fromat)=format
@@ -9,9 +14,7 @@ mixin MovieCard(duration,time_uploaded,thumbnail,uploaderName,title,videoUrl,for
                 i(class="fa-solid fa-play text-white" )
         img(src=thumbnail, alt="couldn't load the image" id= new URL(videoUrl).searchParams.get('v') )
         div(class="w-full p-4")
-            -let extraClass = type == "video"? "": 'flex flex-col justify-center'
             div(class="w-full") 
                 span(class="text-grayCustom text-sm")=uploaderName
                 p(class="font-bold w-full" style="overflow: hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;")=title
                 span(class="text-grayInfo text-sm")= views + " | " + time_uploaded 
-            
