@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-  externals: ['fs'],
+    externals: ['fs','path'],
   module: {
     rules: [
     {

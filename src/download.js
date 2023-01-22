@@ -2,12 +2,46 @@
 import $ from "jquery";
 import Handlebars from 'handlebars';
 import MovieCard from '../templates/MovieCard.html';
+
+const videoFormats = [
+    'video:mp4',
+    'video:webm',
+    'video:avi',
+    'video:mkv',
+    'video:flv',
+    'video:wmv',
+    'video:mov',
+    'video:m4v',
+    'video:3gp',
+    'video:asf',
+    'video:m2ts',
+    'video:ts',
+    'video:hevc',
+    'video:vp9'
+];
+const audioFormats = [
+    'audio-only:mp3',
+    'audio-only:aac',
+    'audio-only:ogg',
+    'audio-only:wav',
+    'audio-only:wma',
+    'audio-only:flac',
+    'audio-only:alac',
+    'audio-only:opus',
+    'audio-only:vorbis',
+    'audio-only:pcm',
+    'audio-only:dts'
+];
+
+
 const template = Handlebars.compile(MovieCard);
 
 
+let timeoutsHolder = {}
 $(document).ready(() => {
+
     setVideoEvenets();
-    
+    directoryEvenetHandler();
     if(movieJson.length >16)
         handleScroll();
     
@@ -15,6 +49,7 @@ $(document).ready(() => {
 
 
 let index = movieJson.length >16? 16: 0;
+//this function when user scroll it shows more videos if the length of vids more than 16! show 16 every scroll
 function handleScroll() {
     $(window).scroll(() => {
         if((scrollY + innerHeight) >= ($(document.body).height() - 100) && index < movieJson.length-1 ){
@@ -31,7 +66,7 @@ function handleScroll() {
                             videoId: new URL( movieJson[i].url).searchParams.get('v'),
                             time_uploaded: movieJson[i].time_uploaded,
                             views: movieJson[i].views,
-                            formats:['mp4','mp3']
+                            formats: videoFormats.concat(audioFormats)
                         }
                     )
                 )
@@ -43,6 +78,7 @@ function handleScroll() {
     })
 }
 
+// handling including and excluding a video event
 let excludedVids = [];
 function setCheckedEvent(playButton) {
     $(playButton)
@@ -69,8 +105,7 @@ function setCheckedEvent(playButton) {
         })
     }
     
-
-let timeoutsHolder = {}
+// handle video play and stop
 function setVideoEvenets() {
     $('[data-id]').each( (index,playButton) => {
         if($(playButton).attr("listener") !== 'true'){
@@ -129,7 +164,26 @@ function setVideoEvenets() {
             }
             
         });
-        console.log('firing')
     }
     })
+}
+
+//directory button event handler
+function directoryEvenetHandler() {
+    
+    checkLocalStorage()
+    $('#directoryBtn').click( async () => {
+    const dir = await electronAPI.getDir();
+    if(dir !== "no directory selected") {
+        localStorage.setItem('dir',dir)
+        checkLocalStorage()
+    }
+})
+}
+// check if there is a directory saved in localStorage
+function checkLocalStorage () {
+    if(localStorage.getItem('dir'))
+        $('#directoryBtn').attr('title',`current Directory selected: ${localStorage.getItem('dir')}`)
+    else 
+    $('#directoryBtn').attr('title',"no directory selected")
 }

@@ -3,9 +3,13 @@ html(lang="en")
     include Header.pug
     link(rel="stylesheet", href="icons/css/all.min.css ")
     body.bg-fMain 
+        -const videoFormats = ['video:mp4','video:webm','video:avi','video:mkv','video:flv','video:wmv','video:mov','video:m4v','video:3gp','video:asf','video:m2ts','video:ts','video:hevc','video:vp9']
+        -const audioFormats = ['audio-only:mp3','audio-only:aac','audio-only:ogg','audio-only:wav','audio-only:wma','audio-only:flac','audio-only:alac','audio-only:opus','audio-only:vorbis','audio-only:pcm','audio-only:dts']
         include Navigate.pug 
+        include OptionsSection.pug
         include MovieCard.pug
         div(class="flex gap-4")
+
         if type == "video"
             +MovieCard(
                 data.duration,
@@ -14,7 +18,7 @@ html(lang="en")
                 data.author,
                 data.title,
                 data.url,
-                ['mp4'],
+                videoFormats.concat(audioFormats),
                 data.views,
                 type
                 )
@@ -29,7 +33,7 @@ html(lang="en")
                         data[i].author,
                         data[i].title,
                         data[i].url,
-                        ['mp4','mp3'],
+                        videoFormats.concat(audioFormats),
                         data[i].views,
                         type
                         )

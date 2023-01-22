@@ -1,0 +1,10 @@
+div.flex.justify-center.items-center.flex-col.gap-4.py-4
+    include Logo.pug
+section(class="w-full flex justify-center items-center gap-4 p-5")
+    input(type="checkbox", id="selectAll", name="selectAll", checked="true", title="if this box is checked all the videos will be downloaded in the format u selected")
+    label(for="selectAll" class="text-white cursor-pointer")  Select all videos with the same format in this select
+    select(name="selectAllFormats" class="bg-sMain rounded-full text-center p-4")
+        each format in videoFormats.concat(audioFormats)
+            option(value=fromat class="bg-sMain  text-black")=format
+    button(class=" bg-sMain p-4 rounded-full text-black" id="directoryBtn") choose a Directory
+    button(class="text-white bg-redYoutube p-4 rounded-full") Download

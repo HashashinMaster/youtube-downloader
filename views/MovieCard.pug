@@ -6,9 +6,9 @@ mixin MovieCard(duration,time_uploaded,thumbnail,uploaderName,title,videoUrl,for
         data-videoId= new URL(videoUrl).searchParams.get('v')
         
         )
-        select(class="absolute top-4 left-4 rounded-md p-1 bg-time text-sm")
+        select(class="absolute top-4 left-4 rounded-md p-1 bg-time text-sm ")
             each format in formats
-                option(value=fromat)=format
+                option(value=fromat class="text-black")=format
                      
         div( data-id= new URL(videoUrl).searchParams.get('v') class="rounded-full shadow-lg bg-grayInfo transition duration-150 hover:bg-sMain w-14 h-14 absolute my-auto top-0 bottom-0 cursor-pointer right-4 flex items-center justify-center z-10")
                 i(class="fa-solid fa-play text-white" )

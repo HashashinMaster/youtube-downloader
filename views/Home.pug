@@ -3,8 +3,7 @@ html(lang="en")
     include Header.pug
     body(class="bg-fMain w-screen h-screen")
         div(class="w-full flex items-center h-3/5 justify-center flex-col gap-4 ")
-            h1(class="text-sMain text-6xl font-rubikVinyl") Weedy
-            p.text-white a safe and easy youtube downloader with different formats
+            include Logo.pug
             form(action="download", method="post" class="w-full flex gap-2 justify-center") 
                 input(
                     data-url = ''
