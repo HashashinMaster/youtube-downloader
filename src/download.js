@@ -7,7 +7,7 @@ const template = Handlebars.compile(MovieCard);
 
 $(document).ready(() => {
     setVideoEvenets();
-    setCheckedEvents();
+    
     if(movieJson.length >16)
         handleScroll();
     
@@ -39,44 +39,43 @@ function handleScroll() {
             }
             index += 16;
             setVideoEvenets();
-            setCheckedEvents();
         }
     })
 }
 
 let excludedVids = [];
-function setCheckedEvents() {
-    $('.fa-circle-check')
-    .each( (i,el) =>{
-        $(el).click(() => {
-            if($(el).attr("class").includes('fa-solid')){
-                $(el)
+function setCheckedEvent(playButton) {
+    $(playButton)
+    .parent()
+    .children('.fa-circle-check')
+    .click(function ()  {
+            if($(this).attr("class").includes('fa-solid')){
+                $(this)
                 .attr('class',
-                $(el)
+                $(this)
                 .attr('class')
                 .replace('fa-solid',"fa-regular"));
-                excludedVids.push($(el).attr('data-videoId'));
-                
+                excludedVids.push($(this).attr('data-videoId'));
             }
             
             else{
-                $(el)
+                $(this)
                 .attr('class',
-                $(el)
+                $(this)
                 .attr('class')
                 .replace('fa-regular',"fa-solid"));
-                excludedVids = excludedVids.filter(id => id !== $(el).attr('data-videoId'));
+                excludedVids = excludedVids.filter(id => id !== $(this).attr('data-videoId'));
             }
-            
         })
-        
-    });
-
+    }
     
-}
+
 let timeoutsHolder = {}
 function setVideoEvenets() {
     $('[data-id]').each( (index,playButton) => {
+        if($(playButton).attr("listener") !== 'true'){
+        setCheckedEvent(playButton);
+        $(playButton).attr("listener",'true');
         $(playButton).click(() => {
             const videoId = playButton.getAttribute('data-id');
             if(!$(playButton).children('i').attr('class').includes("fa-stop")) {
@@ -88,7 +87,13 @@ function setVideoEvenets() {
                 <iframe width="100%" class="pointer-events-none" src='https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&disablekb=1&rel=0&controls=0'></iframe>
                 <div class=' h-1 w-0 bg-red-600 progressBar'></div>
                 `);
-                $(playButton).children('i').attr('class',$(playButton).children('i').attr('class').replace("fa-play","fa-stop"));
+                $(playButton)
+                .children('i')
+                .attr('class',
+                $(playButton)
+                .children('i')
+                .attr('class')
+                .replace("fa-play","fa-stop"));
                 const duration = $(playButton.parentElement)
                 .children('span')
                 .text()
@@ -110,12 +115,21 @@ function setVideoEvenets() {
                 .replaceWith(
                     `<img id=${videoId} src="https://i.ytimg.com/vi/${videoId}/mqdefault.jpg" alt="couldn't load the image" />`
                 );
-                $(playButton).children('i').attr('class',$(playButton).children('i').attr('class').replace("fa-stop","fa-play"));
-                    clearTimeout(timeoutsHolder[videoId]);
+                $(playButton)
+                .children('i')
+                .attr('class',
+                $(playButton)
+                .children('i')
+                .attr('class')
+                .replace("fa-stop","fa-play"));
+                clearTimeout(timeoutsHolder[videoId]);
                     
                 
 
             }
-        })
+            
+        });
+        console.log('firing')
+    }
     })
 }
