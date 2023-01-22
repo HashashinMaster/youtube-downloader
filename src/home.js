@@ -12,7 +12,7 @@ function fnReady() {
         e.preventDefault();
         const videoInfo = validation();
         if(!$('input[type="text"]').val())
-            return toastr.error("url field is empty",toastOptions)
+            return toastr.error("url field is empty",'',toastOptions)
         if(videoInfo.success) {
             $('input[type="hidden"]').val(videoInfo.type)
             $('form').submit();

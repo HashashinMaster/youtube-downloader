@@ -2,6 +2,7 @@
 import $ from "jquery";
 import Handlebars from 'handlebars';
 import MovieCard from '../templates/MovieCard.html';
+import toastr from "toastr";
 
 const videoFormats = [
     'video:mp4',
@@ -42,30 +43,31 @@ $(document).ready(() => {
 
     setVideoEvenets();
     directoryEvenetHandler();
-    if(movieJson.length >16)
+    submit();
+    if(videosJson.length >16)
         handleScroll();
     
 });
 
 
-let index = movieJson.length >16? 16: 0;
+let index = videosJson.length >16? 16: 0;
 //this function when user scroll it shows more videos if the length of vids more than 16! show 16 every scroll
 function handleScroll() {
     $(window).scroll(() => {
-        if((scrollY + innerHeight) >= ($(document.body).height() - 100) && index < movieJson.length-1 ){
+        if((scrollY + innerHeight) >= ($(document.body).height() - 100) && index < videosJson.length-1 ){
             for(let i =index; i < index + 16;i++) {
-                if(movieJson[i] === undefined)
+                if(videosJson[i] === undefined)
                 break;
                 $('#cardsContainer').append(
                     template(
                         {
-                            title: movieJson[i].title,
-                            thumbnail: movieJson[i].thumbnail,
-                            uploaderName: movieJson[i].author,
-                            duration: movieJson[i].duration,
-                            videoId: new URL( movieJson[i].url).searchParams.get('v'),
-                            time_uploaded: movieJson[i].time_uploaded,
-                            views: movieJson[i].views,
+                            title: videosJson[i].title,
+                            thumbnail: videosJson[i].thumbnail,
+                            uploaderName: videosJson[i].author,
+                            duration: videosJson[i].duration,
+                            videoId: new URL( videosJson[i].url).searchParams.get('v'),
+                            time_uploaded: videosJson[i].time_uploaded,
+                            views: videosJson[i].views,
                             formats: videoFormats.concat(audioFormats)
                         }
                     )
@@ -186,4 +188,52 @@ function checkLocalStorage () {
         $('#directoryBtn').attr('title',`current Directory selected: ${localStorage.getItem('dir')}`)
     else 
     $('#directoryBtn').attr('title',"no directory selected")
+}
+
+
+// handling submitions
+function submit() {
+    const toastOptions = {
+        closeButton: true,
+        progressBar: true
+    }
+    $('#sendConfig')
+    .click(() => {
+        let allSameFormat = $('#selectAll').prop('checked');
+        console.log(allSameFormat)
+        if(!localStorage.getItem('dir')){
+            toastr.error('Choose a Directory!','No Directory Selected',toastOptions)
+            return
+        }
+            const includedVids = excludedVids.length > 0? 
+            videosJson.filter( video => !excludedVids
+                .includes(new URL( video.url)
+                .searchParams
+                .get('v'))): 
+                videosJson;
+            let data;    
+            if(allSameFormat){
+                data = includedVids.map(video => {
+                return {
+                    id: new URL( video.url).searchParams.get('v'),
+                    format: $('#selectAllFormats').val()
+                }
+            })
+            }
+            else{
+                data = includedVids.map(video => {
+                    return {
+                        id: new URL(video.url).searchParams.get('v'),
+                        format: $(`[data-id = "${
+                            new URL(video.url)
+                            .searchParams
+                            .get('v')}"]`)
+                            .parent()
+                            .children('select')
+                            .val()
+                    }
+                })
+            }
+            console.log(data)
+    })
 }
