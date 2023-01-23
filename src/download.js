@@ -118,7 +118,7 @@ function setVideoEvenets() {
             if(!$(playButton).children('i').attr('class').includes("fa-stop")) {
                 $(`#${videoId}`)
                 .replaceWith(`<div class="videoHolder w-full"></div>`);
-                $(playButton.parentElement)
+                $(playButton.parentElement) 
                 .children('.videoHolder')
                 .append(`
                 <iframe width="100%" class="pointer-events-none" src='https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&disablekb=1&rel=0&controls=0'></iframe>
@@ -178,8 +178,9 @@ function directoryEvenetHandler() {
     const dir = await electronAPI.getDir();
     if(dir !== "no directory selected") {
         localStorage.setItem('dir',dir)
-        checkLocalStorage()
     }
+    checkLocalStorage();
+
 })
 }
 // check if there is a directory saved in localStorage
@@ -213,12 +214,13 @@ function submit() {
                 videosJson;
             let data;    
             if(allSameFormat){
-                data = includedVids.map(video => {
-                return {
-                    id: new URL( video.url).searchParams.get('v'),
-                    format: $('#selectAllFormats').val()
-                }
-            })
+                data = includedVids.map(video =>  new URL( video.url).searchParams.get('v'))
+            data= {
+                dir: localStorage.dir,
+                allSameFormat, 
+                format: $('#selectAllFormats').val(), 
+                videos: data 
+            }
             }
             else{
                 data = includedVids.map(video => {
@@ -233,7 +235,18 @@ function submit() {
                             .val()
                     }
                 })
+                data = {
+                    dir: localStorage.dir,
+                    allSameFormat,
+                    videos:data
+                }
             }
-            console.log(data)
+            $(document.body)
+            .append(
+                $("<form method='post' action='download/watch/progress'></form>")
+                .append(`<input name="data" type="hidden"  value='${JSON.stringify(data)}' />`)
+            );
+            $('form').submit();
+            
     })
 }

@@ -26,6 +26,7 @@
     "jquery": "^3.6.3",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
+    "progress": "^2.0.3",
     "pug": "^3.0.2",
     "puppeteer": "^19.5.2",
     "toastr": "^2.1.4",

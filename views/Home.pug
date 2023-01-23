@@ -2,6 +2,7 @@ doctype html
 html(lang="en")
     include Header.pug
     body(class="bg-fMain w-screen h-screen")
+        include Navigation.pug 
         div(class="w-full flex items-center h-3/5 justify-center flex-col gap-4 ")
             include Logo.pug
             form(action="download", method="post" class="w-full flex gap-2 justify-center") 

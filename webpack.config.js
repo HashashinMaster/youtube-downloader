@@ -15,6 +15,9 @@ module.exports = {
         download: {
           import: './src/download.js',
         },
+        navigate: {
+          import: './src/navigate.js',
+        },
       
     },
     output: {

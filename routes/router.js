@@ -1,7 +1,11 @@
 
 const router = require('express').Router();
-const home = require('../controllers/Home')
-const { showDownloadPage, showDownloadErr } = require('../controllers/Download');
+const home = require('../controllers/Home');
+const { 
+    showDownloadPage, 
+    showDownloadErr, 
+    showDownloadProgressPage 
+} = require('../controllers/Download');
 
 router
 .route('/')
@@ -11,5 +15,9 @@ router
 .route('/download')
 .post(showDownloadPage)
 .get(showDownloadErr);
+
+router
+.route('/download/watch/progress')
+.post(showDownloadProgressPage);
 
 module.exports = router
