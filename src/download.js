@@ -5,33 +5,32 @@ import MovieCard from '../templates/MovieCard.html';
 import toastr from "toastr";
 
 const videoFormats = [
-    'video:mp4',
-    'video:webm',
-    'video:avi',
-    'video:mkv',
-    'video:flv',
-    'video:wmv',
-    'video:mov',
-    'video:m4v',
-    'video:3gp',
-    'video:asf',
-    'video:m2ts',
-    'video:ts',
-    'video:hevc',
-    'video:vp9'
-];
+    'video:MP4',
+    'video:MKV',
+    'video:AVI',
+    'video:M4V',
+    'video:MOV',
+    'video:WMV',
+    'video:MPEG-1',
+    'video:MPEG-2',
+    'video:MPEG-4',
+    'video:H.264',
+    'video:H.265',
+    'video:VP8',
+    'video:VP9',
+    'video:Theora'
+  ];
 const audioFormats = [
-    'audio-only:mp3',
-    'audio-only:aac',
-    'audio-only:ogg',
-    'audio-only:wav',
-    'audio-only:wma',
-    'audio-only:flac',
-    'audio-only:alac',
-    'audio-only:opus',
-    'audio-only:vorbis',
-    'audio-only:pcm',
-    'audio-only:dts'
+        'audio:AAC',
+        'audio:AC3',
+        'audio:DTS',
+        'audio:DTS-HD',
+        'audio:E-AC3',
+        'audio:FLAC',
+        'audio:MP3',
+        'audio:Opus',
+        'audio:TrueHD',
+        'audio:Vorbis'
 ];
 
 
@@ -40,7 +39,6 @@ const template = Handlebars.compile(MovieCard);
 
 let timeoutsHolder = {}
 $(document).ready(() => {
-
     setVideoEvenets();
     directoryEvenetHandler();
     submit();
@@ -200,21 +198,27 @@ function submit() {
     }
     $('#sendConfig')
     .click(() => {
-        let allSameFormat = $('#selectAll').prop('checked');
-        console.log(allSameFormat)
         if(!localStorage.getItem('dir')){
             toastr.error('Choose a Directory!','No Directory Selected',toastOptions)
             return
         }
+        let data;    
+        if(dataType === 'playlist'){
+            let allSameFormat = $('#selectAll').prop('checked');
             const includedVids = excludedVids.length > 0? 
             videosJson.filter( video => !excludedVids
                 .includes(new URL( video.url)
                 .searchParams
                 .get('v'))): 
                 videosJson;
-            let data;    
             if(allSameFormat){
-                data = includedVids.map(video =>  new URL( video.url).searchParams.get('v'))
+                data = includedVids.map(video => {
+                    return {
+                        id: new URL( video.url).searchParams.get('v'),
+                        title: video.title.replace(/[^a-zA-Z ]/g, "").trim(),
+                        thumbnail: video.thumbnail,
+                    }
+                })
             data= {
                 dir: localStorage.dir,
                 allSameFormat, 
@@ -226,6 +230,8 @@ function submit() {
                 data = includedVids.map(video => {
                     return {
                         id: new URL(video.url).searchParams.get('v'),
+                        title: video.title.replace(/[^a-zA-Z ]/g, "").trim(),
+                        thumbnail: video.thumbnail,
                         format: $(`[data-id = "${
                             new URL(video.url)
                             .searchParams
@@ -241,10 +247,31 @@ function submit() {
                     videos:data
                 }
             }
+        }
+        else {
+            data = {
+                dir: localStorage.dir,
+                id: new URL(videosJson.url).searchParams.get('v'),
+                title: videosJson.title.replace(/[^a-zA-Z ]/g, "").trim(),
+                thumbnail: videosJson.thumbnail,
+                format: $(`[data-id = "${
+                    new URL(videosJson.url)
+                    .searchParams
+                    .get('v')}"]`)
+                    .parent()
+                    .children('select')
+                    .val()
+            }
+        }
+
+
+
+
             $(document.body)
             .append(
                 $("<form method='post' action='download/watch/progress'></form>")
-                .append(`<input name="data" type="hidden"  value='${JSON.stringify(data)}' />`)
+                .append(`<textarea  name="data" class="hidden">${JSON.stringify(data)}</textarea>`)
+                .append(`<input type='hidden' name='type' value="${dataType}"/>`)
             );
             $('form').submit();
             

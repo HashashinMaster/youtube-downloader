@@ -2,24 +2,24 @@ doctype html
 html(lang="en")
     include Header.pug
     body.bg-fMain
-        -const videoFormats = ['video:mp4','video:webm','video:avi','video:mkv','video:flv','video:wmv','video:mov','video:m4v','video:3gp','video:asf','video:m2ts','video:ts','video:hevc','video:vp9']
-        -const audioFormats = ['audio-only:mp3','audio-only:aac','audio-only:ogg','audio-only:wav','audio-only:wma','audio-only:flac','audio-only:alac','audio-only:opus','audio-only:vorbis','audio-only:pcm','audio-only:dts']
+        -const videoFormats =['video:MP4','video:MKV','video:AVI','video:M4V','video:MOV','video:WMV','video:MPEG-1','video:MPEG-2','video:MPEG-4','video:H.264','video:H.265','video:VP8','video:VP9','video:Theora']
+        -const audioFormats = ['audio:AAC','audio:AC3','audio:DTS','audio:DTS-HD','audio:E-AC3','audio:FLAC','audio:MP3','audio:Opus','audio:TrueHD','audio:Vorbis']
         include Navigation.pug 
         include OptionsSection.pug
         include MovieCard.pug
-        div(class="flex gap-4")
         if type == "video"
-            +MovieCard(
-                data.duration,
-                data.time_uploaded,
-                data.thumbnail,
-                data.author,
-                data.title,
-                data.url,
-                videoFormats.concat(audioFormats),
-                data.views,
-                type
-                )
+            div(class="flex justify-center w-full")
+                +MovieCard(
+                    data.duration,
+                    data.time_uploaded,
+                    data.thumbnail,
+                    data.author,
+                    data.title,
+                    data.url,
+                    videoFormats.concat(audioFormats),
+                    data.views,
+                    type
+                    )
         else 
             div(class="flex w-cardRow  gap-4 flex-wrap mx-auto" id="cardsContainer")
                 -for (let i = 0; i< 16; i++)
@@ -42,4 +42,5 @@ html(lang="en")
 
     script. 
         const videosJson=!{JSON.stringify(data)};
+        const dataType= '!{type}'
     script(src="dist/download.bundle.js") 

@@ -1,11 +1,10 @@
 mixin MovieCard(duration,time_uploaded,thumbnail,uploaderName,title,videoUrl,formats,views,type)
     div( class="w-64 h-[300px] text-white bg-MovieCard rounded-3xl flex flex-col items-center gap-2 overflow-hidden relative")
         span(class="absolute top-4 right-4 rounded-md p-1 bg-time text-sm")= duration
-        i(class="fa-solid  fa-circle-check absolute bottom-4 right-4 text-lg cursor-pointer ", 
-        title="if the checkbox is checked the video is going to download after!",
-        data-videoId= new URL(videoUrl).searchParams.get('v')
-        
-        )
+        if type == 'playlist'
+            i(class="fa-solid  fa-circle-check absolute bottom-4 right-4 text-lg cursor-pointer ", 
+            title="if the checkbox is checked the video is going to download after!",
+            data-videoId= new URL(videoUrl).searchParams.get('v'))
         select(class="absolute top-4 left-4 rounded-md p-1 bg-time text-sm ")
             each format in formats
                 option(value=fromat class="text-black")=format
