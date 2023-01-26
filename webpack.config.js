@@ -18,6 +18,9 @@ module.exports = {
         navigate: {
           import: './src/navigate.js',
         },
+        watchprogress: {
+          import: './src/watchprogress.js',
+        },
       
     },
     output: {

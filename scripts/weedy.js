@@ -3,8 +3,10 @@ const fs = require('fs').promises;
 const path = require('path');
 
 let browser;
+
 ( async () => {
     browser = await puppeteer.launch({timeout:0});
+    console.log('browser opened!')
 })()
 
 const getPlaylistInfo =  async (url) => {

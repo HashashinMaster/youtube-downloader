@@ -3,6 +3,7 @@ import $ from "jquery";
 import Handlebars from 'handlebars';
 import MovieCard from '../templates/MovieCard.html';
 import toastr from "toastr";
+import loading from '../templates/loading.html';
 
 const videoFormats = [
     'video:MP4',
@@ -273,7 +274,13 @@ function submit() {
                 .append(`<textarea  name="data" class="hidden">${JSON.stringify(data)}</textarea>`)
                 .append(`<input type='hidden' name='type' value="${dataType}"/>`)
             );
+
+
+            $('body')
+                .append(loading);
+
+                
             $('form').submit();
-            
+        
     })
 }

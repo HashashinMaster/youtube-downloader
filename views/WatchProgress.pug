@@ -2,5 +2,7 @@ html
     include Header.pug 
     body
         include Navigation.pug
-        span downloading
-        
+    script. 
+        const videosJson=!{JSON.stringify(data)};
+        const dataType= '!{type}'
+    script(src="/dist/watchprogress.bundle.js" defer) 

@@ -1,24 +1,18 @@
 const { app: electronApp, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
-// const server = require("./server");
+require("./server");
 
 function createWindow () {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
-    // titleBarStyle: 'hidden',
-    // titleBarOverlay: {
-    //   color: '#2f3241',
-    //   symbolColor: '#74b1be',
-    
-    // },
     icon: path.join(__dirname,"public","logo.png"),
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
     }
   });
-  win.setBackgroundColor('#2f3241')
+  win.setBackgroundColor('#131219')
   win.loadURL('http://localhost:3000/')
 }
 //electron-packager C:\Users\HP\Desktop\BigProjects\youtube_downloader Weedy --platform=win32 --arch=x64 --electron-version=22.0.0

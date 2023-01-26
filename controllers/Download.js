@@ -1,9 +1,8 @@
 const ytdl = require('ytdl-core');
-const dd = require('../scripts/scrap.json');
 const hbjs = require('handbrake-js');
-const { createWriteStream, unlink, exists } = require('fs');
-const {join, resolve} = require('path');
-const { getVideoInfo, getPlaylistInfo } = require('../scripts/weedy');
+const { createWriteStream, exists } = require('fs');
+const {join} = require('path');
+const weedy = require('../scripts/weedy');
 const showDownloadPage = async ( req, res ) => {
     
     if(req.body.url === undefined)
@@ -12,12 +11,12 @@ const showDownloadPage = async ( req, res ) => {
     try {
         let data;
         if(req.body.type ==='video'){
-            data = await getVideoInfo(req.body.url);
+            data = await weedy.getVideoInfo(req.body.url);
             return res.render('Download', { data, type: req.body.type })
         }
         else if(req.body.type ==='playlist'){
-            // data = await getPlaylistInfo(req.body.url);
-            return res.render('Download', { data: dd, type: req.body.type })
+            data = await weedy.getPlaylistInfo(req.body.url);
+            return res.render('Download', { data, type: req.body.type })
 
         }
     
@@ -37,27 +36,13 @@ const showDownloadErr = (req, res) => {
 const showDownloadProgressPage = async (req, res) => {
     if(!req.body.data)
         return res.render('Error', {code:404,message:" data is Missing!"})
-    const { data, type} = req.body.type
+    const { data, type } = req.body
     return res.render('WatchProgress',{ type, data })
-    
-    // const data = JSON.parse(req.body.data);
-    // if(req.body.type === "video") {
-    //     const format = data.format.split(":")[1].toLowerCase()
-    //     await downloadAndConvert(data, format, data.dir)
-    //     return res.render('WatchProgress',{})
-    // }
-    // for (const video of data.videos){
-    //     let format;
-    //     if(data.allSameFormat) 
-    //         format = data.format.split(":")[1].toLowerCase()
-    //     else 
-    //         format = video.format.split(":")[1].toLowerCase()
-    //     await downloadAndConvert(video,format,data.dir)
-    // }
+
 }
 
 
-async function downloadAndConvert(video,format,dir) {
+async function downloadAndConvert(video,format,dir,io) {
     
     const tempPath = join(__dirname,'..','temp','t.mp4');
     const output = createWriteStream(tempPath);
@@ -87,6 +72,7 @@ async function downloadAndConvert(video,format,dir) {
                         reject(err)
                     })
                     .on('progress', progress => {
+                        io.emit('progress',progress.percentComplete)
                         console.log(
                             'Percent complete: %s, ETA: %s',
                             progress.percentComplete,
@@ -106,5 +92,6 @@ async function downloadAndConvert(video,format,dir) {
 module.exports = { 
     showDownloadPage,
     showDownloadErr,
-    showDownloadProgressPage
+    showDownloadProgressPage,
+    downloadAndConvert
 }

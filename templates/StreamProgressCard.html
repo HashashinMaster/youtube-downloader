@@ -1,0 +1,22 @@
+
+<div  class="flex gap-3 p-2 shadow-md rounded-md w-5/6 mx-auto my-3  bg-MovieCard">
+    <img src="{{thumbnail}}" 
+    class=" rounded-md"
+    />
+    <div class="flex flex-col gap-2 text-white w-full justify-evenly">
+        <div>
+            <span 
+            class="font-bold"
+            style="overflow: hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;"
+            >{{title}}</span>
+            <span class="text-sm text-grayCustom">{{format}}</span>
+            <br>
+            <span id="{{id}}preparing" class="text-sm text-sMain flex gap-3 items-center"> Preparing video Stream pls hold UwU</span>
+        </div>
+        <div class="flex gap-2 w-full items-center p-1">
+            <div id="{{id}}"></div>  
+            <i id="{{id}}" class="text-sm text-sMain">0%</i>
+        </div>
+        
+    </div>
+</div>

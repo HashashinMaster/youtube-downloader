@@ -1,7 +1,6 @@
 import $ from "jquery";
 import toastr from 'toastr';
-
-
+import loading from '../templates/loading.html';
 $(document).ready(fnReady)
 const toastOptions = {
     closeButton: true,
@@ -15,6 +14,25 @@ function fnReady() {
             return toastr.error("url field is empty",'',toastOptions)
         if(videoInfo.success) {
             $('input[type="hidden"]').val(videoInfo.type)
+            $('body')
+                .append(loading);
+            fetch('https://api.chucknorris.io/jokes/random')
+                .then( joke => joke.json())
+                    .then( ({value}) => {
+                        if(value){
+                            $('<i/>')
+                            .attr('class','text-sMain')
+                            .text(value)
+                            .appendTo('#loading');
+                            $('<i/>')
+                            .attr('class','text-sMain')
+                            .text("ana b3da d7katni nokta.")
+                            .appendTo('#loading')
+                        }
+                        })
+                .catch(() => {
+                    $('form').submit();
+                })
             $('form').submit();
             return
         }

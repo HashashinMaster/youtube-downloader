@@ -15,6 +15,7 @@ module.exports = {
         foMain: '#2b4e34',
         MovieCard: '#262837',
         time: 'rgb(91 93 108 / 42%)',
+        loading: 'rgba(0, 0, 0, 0.51)',
         redYoutube: '#ff0000'
       },
       colors: {
