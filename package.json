@@ -1,6 +1,16 @@
 {
-  "name": "youtube_downloader",
+  "name": "weedy",
   "version": "1.0.0",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-zip"
+        }
+      ]
+    }
+  },
   "description": "youtube downloader app",
   "main": "index.js",
   "scripts": {

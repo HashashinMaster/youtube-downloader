@@ -1,9 +1,11 @@
-const puppeteer = require('puppeteer');
-const fs = require('fs').promises;
 const path = require('path');
 
-let browser;
+//path to chromium u installed. make sure it the right path of your chromium
+process.env.PUPPETEER_EXECUTABLE_PATH = path.join(__dirname,'chrome-win', 'chrome.exe');
+const puppeteer = require('puppeteer');
 
+
+let browser;
 ( async () => {
     browser = await puppeteer.launch({timeout:0});
     console.log('browser opened!')
@@ -60,7 +62,6 @@ const getPlaylistInfo =  async (url) => {
         }
         return data
     })
-    await fs.writeFile(path.join(__dirname,'scrap.json'),JSON.stringify(data,null,2));
      page.close();
     return data;
     
@@ -96,14 +97,6 @@ const getVideoInfo =  async (url) => {
     }
 }
 
-//youtube playlist 
-// $('body script').each( async (i,el)=> {
-//     if($(el).html().includes('var ytInitialData')){
-//         const jsonStr = $(el).html().replace("var ytInitialData = ","").replace(";","");
-//         // console.log(JSON.parse(JSON.stringify(jsonStr)))
-//         await fs.writeFile(path.join(__dirname,'scrap.json'),JSON.stringify(JSON.parse(jsonStr),null,2));
-//     }
-// })
 
 module.exports = {
     getVideoInfo,

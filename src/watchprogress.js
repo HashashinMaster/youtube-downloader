@@ -15,12 +15,6 @@ function fnReady() {
         downloadPlaylist()
     else
         downloadVideo(data)
-    // socket.on('download-completed', video => {
-    //     console.log('vid completed',video.title)
-    // });
-    // socket.on('progress', progess => {
-    //     console.log('Percent complete: %s',progess)
-    // })
 
 }
 
@@ -46,7 +40,7 @@ function downloadVideo(videoObj,format,dir){
     removeEventListeners();
     $('body')
         .append(template(videoObj));
-    const bar = new Line(`div#${videoObj.id}`,{
+    const bar = new Line(`div#escape${videoObj.id}`,{
         easing: 'easeIn',
         strokeWidth: 0.5,
         trailWidth: 0.1,
@@ -60,19 +54,18 @@ function downloadVideo(videoObj,format,dir){
             closeButton: true,
             progressBar: true
         }
-        $(`#${videoObj.id}preparing`)
+        $(`#escape${videoObj.id}preparing`)
         .text('video downloaded')
         .append('<i class="fa-solid fa-circle-check text-sMain"></i>')
         toastr.success(video.title,'Download completed',toastOptions)
-        // bar.destroy();
         resolve()
     });
     socket.on('progress', progress => {
-        $(`#${videoObj.id}preparing`).text('converting video Stream Owo!')
+        $(`#escape${videoObj.id}preparing`).text('converting video Stream Owo!')
         bar.animate( progress/100,{
             duration:100,
         });
-        $(`i#${videoObj.id}`)
+        $(`i#escape${videoObj.id}`)
             .text(`${progress}%`)
     })
     socket.on('error', err => reject(err))

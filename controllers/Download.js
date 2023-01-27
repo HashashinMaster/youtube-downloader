@@ -82,8 +82,6 @@ async function downloadAndConvert(video,format,dir,io) {
                     .on('complete',() => resolve('Download Completed'))
                     })
             
-            // .on('complete', () => unlink(join(__dirname,'..','temp','t.mp4')))
-            // .on('cancelled', () => unlink(join(__dirname,'..','temp','t.mp4')))
         })
         });
 
