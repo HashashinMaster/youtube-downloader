@@ -3,5 +3,6 @@ html(lang="en")
     include Header.pug
     body
         include Navigation.pug 
-        span ERROR! CODE #{code} 
-        h1 #{message} 
+        div.w-full.h-screen.flex.items-center.text-white.flex-col.justify-center
+            span(class="text-red-600 text-5xl") ERROR! CODE #{code} 
+            h1 #{message} 

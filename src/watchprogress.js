@@ -5,12 +5,13 @@ import Handlebars from 'handlebars';
 import { Line } from 'progressbar.js';
 import toastr from 'toastr';
 const socket = io();
+socket.on('canceled', () => history.back())
+
 const template = Handlebars.compile(StreamTemplate);
 const data = JSON.parse(videosJson);
 $(document).ready(fnReady)
 function fnReady() {
-    $('body')
-    .append($('<button>refresh</button>').click(()=>location.reload()))
+    
     if( dataType === 'playlist')
         downloadPlaylist()
     else
@@ -34,7 +35,8 @@ async function downloadPlaylist() {
             format = video.format.split(":")[1].toLowerCase()
         await downloadVideo(video,format,data.dir)
     }
-    toastr.info('Finished',"your playlist is finished Downloading",{timeOut:100000});
+    toastr.info('your playlist is finished Downloading',"Finished",{timeOut:100000});
+
 }
 function downloadVideo(videoObj,format,dir){
     removeEventListeners();

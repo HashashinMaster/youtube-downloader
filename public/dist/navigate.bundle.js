@@ -10,13 +10,33 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./templates/Popup.html":
+/*!******************************!*\
+  !*** ./templates/Popup.html ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (\"<div class=\\\" text-white fixed top-0 right-0 left-0 bottom-0 bg-loading flex items-center justify-center\\\">\\r\\n    <div>\\r\\n        <h1>you sure u want to cancel the download?</h1>\\r\\n        <button id=\\\"confirm\\\" class=\\\"bg-sMain w-36 p-4 m-4 rounded-md\\\">\\r\\n            Yes diha frassk\\r\\n        </button>\\r\\n        <button id=\\\"cancel\\\" class=\\\"bg-redYoutube w-36 p-4 rounded-md\\\">\\r\\n            No!\\r\\n        </button>\\r\\n    </div>    \\r\\n</div>\");\n\n//# sourceURL=webpack://weedy/./templates/Popup.html?");
+
+/***/ }),
+
 /***/ "./src/navigate.js":
 /*!*************************!*\
   !*** ./src/navigate.js ***!
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\r\n\r\njquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(() => {\r\n    if( location.href === 'http://localhost:3000/download' || location.href === 'http://localhost:3000/download/watch/progress'){\r\n        const i = jquery__WEBPACK_IMPORTED_MODULE_0___default()('<i>',{\r\n        class:'fa-solid fa-arrow-left text-white cursor-pointer text-sMain text-lg'\r\n    })\r\n    i.click(() => history.back())\r\n    i.appendTo('#navigation-container')\r\n    }    \r\n    if(history.length > 1 && location.href ==='http://localhost:3000/') {\r\n        const i = jquery__WEBPACK_IMPORTED_MODULE_0___default()('<i>',{\r\n            class:'fa-solid fa-arrow-right text-white cursor-pointer text-sMain text-lg'\r\n        })\r\n        i.click(() => history.forward())\r\n        i.appendTo('#navigation-container')\r\n        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navigation-container').addClass('bg-MovieCard')\r\n    }\r\n    if((location.href === 'http://localhost:3000/download' || location.href === 'http://localhost:3000/download/watch/progress') && history.length > 1 ) {\r\n        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navigation-container').addClass('flex justify-between bg-MovieCard')\r\n    }\r\n    else {\r\n        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navigation-container').addClass('flex justify-end')\r\n        \r\n    }\r\n\r\n})\n\n//# sourceURL=webpack://weedy/./src/navigate.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _templates_Popup_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../templates/Popup.html */ \"./templates/Popup.html\");\n/* harmony import */ var handlebars__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! handlebars */ \"./node_modules/handlebars/lib/index.js\");\n/* harmony import */ var handlebars__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(handlebars__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! socket.io-client */ \"./node_modules/socket.io-client/build/esm/index.js\");\n\r\n\r\n\r\n\r\nconst socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_3__.io)();\r\njquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(() => {\r\n    if( location.href === 'http://localhost:3000/download' || location.href === 'http://localhost:3000/download/watch/progress'){\r\n        const i = jquery__WEBPACK_IMPORTED_MODULE_0___default()('<i>',{\r\n        class:'fa-solid fa-arrow-left text-white cursor-pointer text-sMain text-lg'\r\n    })\r\n    if(location.href === 'http://localhost:3000/download/watch/progress'){\r\n        const template = handlebars__WEBPACK_IMPORTED_MODULE_2___default().compile(_templates_Popup_html__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\r\n        i.click(() => {\r\n            jquery__WEBPACK_IMPORTED_MODULE_0___default()('body')\r\n            .append(template())\r\n        \r\n            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#cancel')\r\n            .click(function (){\r\n                jquery__WEBPACK_IMPORTED_MODULE_0___default()(this)\r\n                .parent()\r\n                .parent()\r\n                .remove()\r\n            })\r\n            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#confirm')\r\n            .click( () => {                \r\n                socket.emit('cancelDown')\r\n            })\r\n            // history.back()\r\n        })\r\n    }\r\n    else{\r\n        i.click( () => history.back())\r\n    }\r\n    i.appendTo('#navigation-container')\r\n    }    \r\n    if(history.length > 1 && location.href ==='http://localhost:3000/') {\r\n        const i = jquery__WEBPACK_IMPORTED_MODULE_0___default()('<i>',{\r\n            class:'fa-solid fa-arrow-right text-white cursor-pointer text-sMain text-lg'\r\n        })\r\n        i.click(() => history.forward())\r\n        i.appendTo('#navigation-container')\r\n        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navigation-container').addClass('bg-MovieCard')\r\n    }\r\n    if((location.href === 'http://localhost:3000/download' || location.href === 'http://localhost:3000/download/watch/progress') && history.length > 1 ) {\r\n        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navigation-container').addClass('flex justify-between bg-MovieCard')\r\n    }\r\n    else {\r\n        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navigation-container').addClass('flex justify-end')\r\n        \r\n    }\r\n\r\n})\n\n//# sourceURL=webpack://weedy/./src/navigate.js?");
+
+/***/ }),
+
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/***/ ((module) => {
+
+module.exports = fs;
 
 /***/ })
 

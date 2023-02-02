@@ -231,7 +231,7 @@ function submit() {
                 data = includedVids.map(video => {
                     return {
                         id: new URL(video.url).searchParams.get('v'),
-                        title: video.title.replace(/[^a-zA-Z ]/g, "").trim(),
+                        title: video.title.trim(),
                         thumbnail: video.thumbnail,
                         format: $(`[data-id = "${
                             new URL(video.url)
@@ -253,7 +253,7 @@ function submit() {
             data = {
                 dir: localStorage.dir,
                 id: new URL(videosJson.url).searchParams.get('v'),
-                title: videosJson.title.replace(/[^a-zA-Z ]/g, "").trim(),
+                title: videosJson.title.trim(),
                 thumbnail: videosJson.thumbnail,
                 format: $(`[data-id = "${
                     new URL(videosJson.url)
