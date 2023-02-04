@@ -5,6 +5,7 @@
  # Setting up development environment
  1. Prerequisites
     - you need to have [node.js](https://nodejs.org/en/) installed in your machine
+    - also you need to install chromium. check [Readme.md](./scripts/Readme.md) for more infos
 2. installing dependencys 
     - this project is shared without node_modules folder so you have to install all the the dependencys by your self.
     - to install dependencys:
