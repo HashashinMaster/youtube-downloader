@@ -55,5 +55,32 @@
   - after installing all the dependencys you are ready to start the application:
     - to start the application run ```npm start``` in the same directory
 # Features
-> comming soon
-      
+- multiple formats:
+   - video formats:
+   | video formats | audio formats |
+   | ------------- | ------------- |
+   | MP4           | AAC           |
+   | MKV           | AC3           |
+   | AVI           | DTS           |
+   | M4V           | DTS-HD        |
+   | MOV           | E-AC3         |
+   | WMV           | FLAC          |
+   | MPEG-1        | MP3           |
+   | MPEG-2        | Opus          |
+   | MPEG-4        | TrueHD        |
+   | H.264         | Vorbis        |
+   | H.265         |               |
+   | VP8           |               |
+   | VP9           |               |
+   | Theora        |               |
+     
+     
+   
+     
+     
+     
+    
+     
+     
+  
+ 
