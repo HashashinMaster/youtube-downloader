@@ -90,7 +90,7 @@
    
 <img width="914" alt="s6" src="https://user-images.githubusercontent.com/97839369/216779031-fa9b3b51-488b-4dc3-868f-76e4d6e9d551.PNG">
 
-### 3. choose the directory where you the videos to locate:
+### 3. choose the directory where the videos should locate:
 
  <p> you can choose the directory where you the videos to locate by clicking on choose Directory button. </p>
  
