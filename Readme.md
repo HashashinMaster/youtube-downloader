@@ -3,8 +3,10 @@
  A Desktop app built with [electron](https://www.electronjs.org/) made for downloading youtube videos with a **unique** features.
 
  # Dowload Weedy app
- <!-- [click here] () to download the zip file and exract it, once you extract the app you can use it direclty !-->
- Release is being uploaded. Once it's done i will update readme.
+ [click here](https://www.mediafire.com/file/fmpufbwp5jbm4q0/weedy-win32-x64.rar/file) to download the zip file and exract it, once you extract the app you can use it direclty
+## Notes:
+ 1. app still in beta version.
+ 2. github release was so slow and faills every second that's why i used mediafire instead.
 
  # Setting up development environment
  1. Prerequisites
