@@ -1,7 +1,11 @@
 # youtube media downloader
 
  A Desktop app built with [electron](https://www.electronjs.org/) made for downloading youtube videos with a **unique** features.
- 
+
+ # Dowload Weedy app
+ <!-- [click here] () to download the zip file and exract it, once you extract the app you can use it direclty !-->
+ Release is being uploaded. Once it's done i will update readme.
+
  # Setting up development environment
  1. Prerequisites
     - you need to have [node.js](https://nodejs.org/en/) installed in your machine
@@ -106,3 +110,8 @@
  
 <img width="947" alt="s9" src="https://user-images.githubusercontent.com/97839369/216779491-d38c8777-19ab-44cb-972d-85ef82b93415.PNG">
 
+# youtube video demo
+
+<a href="https://www.youtube.com/watch?v=VJ_7WJOHDLY&ab_channel=HashashinMaster">
+ <img src="https://img.youtube.com/vi/VJ_7WJOHDLY/default.jpg">
+</a>
