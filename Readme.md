@@ -83,14 +83,14 @@
 
 <img width="955" alt="s3" src="https://user-images.githubusercontent.com/97839369/216778201-47f09d74-90c8-406b-b6c1-4c528f14f902.PNG">
 
-   - or you can uncheck the chekbox and choose the format you want to install for every video (by default its mp4):
+   - Or you can uncheck the chekbox and choose the format you want to install for every video (by default its mp4):
      
 <img width="960" alt="s5" src="https://user-images.githubusercontent.com/97839369/216778672-380c578b-f510-4104-ae12-79453f7fdd0f.PNG">
 
 
 ### 2. exclude a video from a playlist:
 
-  - If you have a video that you don't wan't to download with the other videos you can exclude it form the playlist by unchecking the checkbox in bottom right:
+  - If you have a video that you don't want to download with the other videos you can exclude it form the playlist by unchecking the checkbox in bottom right:
    
 <img width="914" alt="s6" src="https://user-images.githubusercontent.com/97839369/216779031-fa9b3b51-488b-4dc3-868f-76e4d6e9d551.PNG">
 
