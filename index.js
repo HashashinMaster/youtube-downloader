@@ -1,6 +1,6 @@
 const { app: electronApp, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
-// require("./server");
+require("./server");
 
 function createWindow () {
   const win = new BrowserWindow({
